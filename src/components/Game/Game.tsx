@@ -5,13 +5,14 @@ import { useState, useEffect } from 'react';
 type Props = {
 	setFinished: (value: boolean) => void,
 	setHits: (value: any) => void,
+	time: number,
 }
 
-const Game: React.FC<Props> = ({ setFinished, setHits }) => {
+const Game: React.FC<Props> = ({ setFinished, setHits, time }) => {
 	const [xPos, setXPos] = useState<number | undefined>();
 	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
-	const circleSize = 30; // width & height
+	const circleSize = 35; // width & height
 
 
 	useEffect(() => {
@@ -33,6 +34,7 @@ const Game: React.FC<Props> = ({ setFinished, setHits }) => {
 			<div className="game__timer">
 				<Timer
 					setFinished={setFinished}
+					time={time}
 				/>
 			</div>
 			<div

@@ -13,15 +13,28 @@
 		font-size: 50px;
 		margin: 0 auto 25px;
 		font-family: Tahoma;
+		// opacity: 0;
+		// animation: visibility 3s linear 1 1s both;
 	}
 
-	&__start {
+	&__wraper {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__start,
+	&__finish {
 		background: none;
 		border: none;
 		color: LightYellow;
 		font-size: 36px;
 		cursor: pointer;
-		font-family: 'Lucida Sans Unicode';
+		// opacity: 0;
+		// animation: visibility 3s linear 1 4s both;
+
+		&:not(:last-child) {
+			margin-bottom: 5px;
+		}
 
 		&:hover {
 			transform: scale(1.05);
@@ -32,5 +45,15 @@
 			transform: scale(1);
 			color: darkorange;
 		}
+	}
+}
+
+@keyframes visibility {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
 	}
 }

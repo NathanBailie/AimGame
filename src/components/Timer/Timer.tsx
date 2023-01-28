@@ -3,11 +3,12 @@ import { useState, useEffect, useRef } from 'react';
 
 type Props = {
 	setFinished: (value: boolean) => void,
+	time: number,
 }
 
-const Timer: React.FC<Props> = ({ setFinished }) => {
+const Timer: React.FC<Props> = ({ setFinished, time }) => {
 	const [minutes, setMinutes] = useState(0);
-	const [seconds, setSeconds] = useState(10);
+	const [seconds, setSeconds] = useState(time);
 	const timerID: { current: any } | undefined = useRef();
 
 	useEffect(() => {
