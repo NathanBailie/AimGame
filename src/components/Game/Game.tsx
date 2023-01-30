@@ -1,19 +1,20 @@
 import './game.scss';
 import Timer from '../Timer/Timer';
 import { useState, useEffect } from 'react';
+import compose from '../../utils/compose';
+import { connect } from 'react-redux';
+import { onAddHit } from '../../actions/actions';
+import { Settings } from '../../interfaces';
 
 type Props = {
-	setFinished: (value: boolean) => void,
-	setHits: (value: any) => void,
-	time: number,
+	addHit: () => void,
 }
 
-const Game: React.FC<Props> = ({ setFinished, setHits, time }) => {
+const Game: React.FC<Props> = ({ addHit }) => {
 	const [xPos, setXPos] = useState<number | undefined>();
 	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
 	const circleSize = 35; // width & height
-
 
 	useEffect(() => {
 		onSetCirclePosition();
@@ -24,18 +25,14 @@ const Game: React.FC<Props> = ({ setFinished, setHits, time }) => {
 		setYPos(getRandomInt(0, boardSize - circleSize - 5));
 	};
 
-
 	function getRandomInt(min: number, max: number): number {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
+	};
 
 	return (
 		<div className="game">
 			<div className="game__timer">
-				<Timer
-					setFinished={setFinished}
-					time={time}
-				/>
+				<Timer />
 			</div>
 			<div
 				className="game__board"
@@ -53,7 +50,7 @@ const Game: React.FC<Props> = ({ setFinished, setHits, time }) => {
 					}}
 					onClick={(e) => {
 						onSetCirclePosition();
-						setHits((value: any) => value + 1)
+						addHit();
 					}}
 				></div>
 			</div>
@@ -61,4 +58,16 @@ const Game: React.FC<Props> = ({ setFinished, setHits, time }) => {
 	);
 };
 
-export default Game;
+const mapStateToProps = ({ settings: { timer } }: Settings) => {
+	return { timer };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+	return {
+		addHit: () => dispatch(onAddHit()),
+	};
+};
+
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps)
+)(Game);

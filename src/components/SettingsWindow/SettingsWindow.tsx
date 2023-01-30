@@ -1,14 +1,18 @@
-import './settings.scss';
-import { useState } from 'react';
+import './settingsWindow.scss';
+import { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
+import compose from '../../utils/compose';
+import { connect } from 'react-redux';
+import { onLaucnhMain, onChageTimer } from '../../actions/actions';
+import { Settings } from '../../interfaces';
 
-type Props = {
-	setSettings: (value: boolean) => void,
-	setTime: (value: number) => void,
-	time: number,
+interface Props {
+	laucnhMain: () => void,
+	changeTimer: (count: number) => void,
+	timer: number,
 };
 
-const Settings: React.FC<Props> = ({ setSettings, setTime, time }) => {
+const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer }) => {
 	const timers = [
 		{ count: 10, id: uuid(), active: true },
 		{ count: 20, id: uuid(), active: false },
@@ -19,9 +23,9 @@ const Settings: React.FC<Props> = ({ setSettings, setTime, time }) => {
 	];
 	const [data, setData] = useState(timers);
 
-	// useEffect(() => {
-	// 	onInspectData(time);
-	// }, []);
+	useEffect(() => {
+		onChangeProp(timer);
+	}, []);
 
 	const timersResult = data.map(item => {
 		const { count, id, active } = item;
@@ -33,7 +37,7 @@ const Settings: React.FC<Props> = ({ setSettings, setTime, time }) => {
 		return (
 			<li
 				key={id}
-				onClick={() => { setTime(10); onChangeProp(id) }}
+				onClick={() => { changeTimer(count); onChangeProp(count) }}
 				className={classes}
 			>
 				{`${count}s`}
@@ -41,25 +45,15 @@ const Settings: React.FC<Props> = ({ setSettings, setTime, time }) => {
 		);
 	});
 
-	function onChangeProp(id: string): void {
+	function onChangeProp(count: number): void {
 		const newData = data.map(item => {
-			if (item.id === id) {
+			if (item.count === count) {
 				return { ...item, ['active']: true };
 			}
 			return { ...item, ['active']: false };
 		});
 		setData(newData);
 	};
-
-	// function onInspectData(value: number): void {
-	// 	const newData = data.map(item => {
-	// 		if (item.count === time) {
-	// 			return { ...item, active: true };
-	// 		};
-	// 		return item;
-	// 	});
-	// 	setData(newData);
-	// };
 
 
 	return (
@@ -75,11 +69,24 @@ const Settings: React.FC<Props> = ({ setSettings, setTime, time }) => {
 			</div>
 			<button
 				className='settings__back'
-				onClick={() => setSettings(false)}
+				onClick={() => laucnhMain()}
 			>
 				Back</button>
 		</div>
 	);
 };
 
-export default Settings;
+const mapStateToProps = ({ settings: { timer } }: Settings) => {
+	return { timer };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+	return {
+		laucnhMain: () => dispatch(onLaucnhMain()),
+		changeTimer: (timer: number) => dispatch(onChageTimer(timer)),
+	};
+};
+
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps)
+)(SettingsWindow);

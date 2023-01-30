@@ -1,14 +1,17 @@
 import './timer.scss';
 import { useState, useEffect, useRef } from 'react';
+import compose from '../../utils/compose';
+import { connect } from 'react-redux';
+import { onLaucnhResults } from '../../actions/actions';
 
 type Props = {
-	setFinished: (value: boolean) => void,
-	time: number,
-}
+	timer: number,
+	launchResults: () => void,
+};
 
-const Timer: React.FC<Props> = ({ setFinished, time }) => {
+const Timer: React.FC<Props> = ({ timer, launchResults }) => {
 	const [minutes, setMinutes] = useState(0);
-	const [seconds, setSeconds] = useState(time);
+	const [seconds, setSeconds] = useState(timer);
 	const timerID: { current: any } | undefined = useRef();
 
 	useEffect(() => {
@@ -18,12 +21,11 @@ const Timer: React.FC<Props> = ({ setFinished, time }) => {
 	useEffect(() => {
 		if (minutes === 0 && seconds === 0) {
 			clearInterval(timerID.current);
-			setFinished(true);
+			launchResults();
 		} else if (minutes !== 0 && seconds === 0) {
 			setSeconds(59);
-			setMinutes((minutes) => minutes - 1)
+			setMinutes((minutes) => minutes - 1);
 		}
-
 	}, [seconds]);
 
 	function tick() {
@@ -38,4 +40,16 @@ const Timer: React.FC<Props> = ({ setFinished, time }) => {
 	);
 };
 
-export default Timer;
+const mapStateToProps = ({ settings: { timer } }: any) => {
+	return { timer };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+	return {
+		launchResults: () => dispatch(onLaucnhResults()),
+	};
+};
+
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps)
+)(Timer);

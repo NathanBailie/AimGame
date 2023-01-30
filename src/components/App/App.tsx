@@ -1,45 +1,39 @@
 import 'normalize.css';
 import './app.scss';
 import { useState } from 'react';
-import Greeting from '../Greeting/Greeeting';
-import Game from '../Game/Game';
-import Results from '../Results/Results';
-import Settings from '../Settings/Settings';
+import GreetingWindow from '../GreetingWindow/GreeetingWindow';
+import GameWindow from '../Game/Game';
+import ResultsWindow from '../ResultsWindow/ResultsWindow';
+import SettingsWindow from '../SettingsWindow/SettingsWindow';
+import compose from '../../utils/compose';
+import { connect } from 'react-redux';
+import { Windows } from '../../interfaces';
 
 
-const App: React.FC = () => {
-	const [start, setStart] = useState<boolean>(false);
-	const [finished, setFinished] = useState<boolean>(false);
-	const [settings, setSettings] = useState<boolean>(false);
-	const [hits, setHits] = useState<number>(0);
+interface Props extends Windows {
+	launchGame: () => void,
+};
 
-	// settings
-	const [time, setTime] = useState<number>(10);
+const App: React.FC<Props> = ({ windows }) => {
+	const { greetings, game, setting, results } = windows;
 
 
 	return (
 		<div className="app">
-			{!start && !settings &&
-				<Greeting
-					setStart={setStart}
-					setSettings={setSettings}
-				/>}
-			{settings &&
-				<Settings
-					setSettings={setSettings}
-					setTime={setTime}
-					time={time}
-				/>}
-			{start && !finished && <Game
-				setFinished={setFinished}
-				setHits={setHits}
-				time={time}
-			/>}
-			{finished && <Results
-				hits={hits}
-			/>}
+			{greetings && <GreetingWindow />}
+			{game && <GameWindow />}
+			{setting && <SettingsWindow />}
+			{results && <ResultsWindow />}
 		</div>
 	);
 };
 
-export default App;
+const mapStateToProps = (
+	{ windows }: Windows,
+) => {
+	return { windows };
+};
+
+export default compose(
+	connect(mapStateToProps)
+)(App);
