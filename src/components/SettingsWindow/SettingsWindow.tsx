@@ -93,7 +93,6 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 				setTargetColors={setTargetColors}
 				onChangeProp={onChangeProp}
 				changeTargetColor={changeTargetColor}
-				targetSize={targetSize}
 			/>
 			<button
 				className='settings__back'

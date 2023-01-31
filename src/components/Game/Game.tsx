@@ -5,17 +5,20 @@ import compose from '../../utils/compose';
 import { connect } from 'react-redux';
 import { onAddHit } from '../../actions/actions';
 import { Settings } from '../../interfaces';
+import { StrNum } from '../../types';
 
 type Props = {
 	addHit: () => void,
 	targetSize: number,
+	targetColor: StrNum[];
 }
 
-const Game: React.FC<Props> = ({ addHit, targetSize }) => {
+const Game: React.FC<Props> = ({ addHit, targetSize, targetColor }) => {
 	const [xPos, setXPos] = useState<number | undefined>();
 	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
 	const circleSize = targetSize; // width & height
+	const [color1, color2]: any = targetColor;
 
 	useEffect(() => {
 		onSetCirclePosition();
@@ -47,7 +50,8 @@ const Game: React.FC<Props> = ({ addHit, targetSize }) => {
 					style={{
 						width: `${circleSize}px`,
 						height: `${circleSize}px`,
-						top: `${xPos}px`, left: `${yPos}px`
+						top: `${xPos}px`, left: `${yPos}px`,
+						background: `radial-gradient(${color1}, ${color2})`
 					}}
 					onClick={(e) => {
 						onSetCirclePosition();
@@ -59,8 +63,8 @@ const Game: React.FC<Props> = ({ addHit, targetSize }) => {
 	);
 };
 
-const mapStateToProps = ({ settings: { timer, targetSize } }: Settings) => {
-	return { timer, targetSize };
+const mapStateToProps = ({ settings: { timer, targetSize, targetColor } }: Settings) => {
+	return { timer, targetSize, targetColor };
 };
 
 const mapDispatchToProps = (dispatch: any) => {

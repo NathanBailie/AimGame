@@ -7,13 +7,12 @@ type Props = {
 	setTargetColors: (value: Data[]) => void,
 	onChangeProp: (settingData: Data[], setData: any, newValue: StrNum | StrNum[]) => void
 	changeTargetColor: (value: StrNum | StrNum[]) => void,
-	targetSize: StrNum,
 };
 
-const TargetColor: React.FC<Props> = ({ targetColors, setTargetColors, onChangeProp, changeTargetColor, targetSize }) => {
+const TargetColor: React.FC<Props> = ({ targetColors, setTargetColors, onChangeProp, changeTargetColor }) => {
 	const result = targetColors.map((item: Data, index) => {
 		const { value, active } = item;
-		console.log(value)
+
 		const [color1, color2]: any = value;
 		let classes = 'targetColor__ballWraper';
 		if (active) {
@@ -28,7 +27,7 @@ const TargetColor: React.FC<Props> = ({ targetColors, setTargetColors, onChangeP
 			>
 				<div
 					className={'targetSizes__ball'}
-					style={{ height: `${targetSize}px`, width: `${targetSize}px`, background: `radial-gradient(${color1}, ${color2})` }}
+					style={{ height: `${40}px`, width: `${40}px`, background: `radial-gradient(${color1}, ${color2})` }}
 				>
 				</div>
 			</div>
