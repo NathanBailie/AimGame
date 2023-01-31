@@ -13,7 +13,6 @@
 	}
 
 	&__back {
-		// position: absolute;
 		display: block;
 		border: none;
 		background: none;
@@ -32,20 +31,4 @@
 			transform: scale(0.99);
 		}
 	}
-
-
-
-	// &__timeWraper {
-	// 	display: flex;
-	// 	justify-content: center;
-	// 	align-items: center;
-	// 	border: 1px solid yellow;
-	// 	height: 100%;
-
-	// 	span {
-	// 		color: white;
-	// 		font-size: 16px;
-	// 		border: 1px solid red;
-	// 	}
-	// }
 }

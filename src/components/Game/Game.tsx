@@ -8,13 +8,14 @@ import { Settings } from '../../interfaces';
 
 type Props = {
 	addHit: () => void,
+	targetSize: number,
 }
 
-const Game: React.FC<Props> = ({ addHit }) => {
+const Game: React.FC<Props> = ({ addHit, targetSize }) => {
 	const [xPos, setXPos] = useState<number | undefined>();
 	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
-	const circleSize = 35; // width & height
+	const circleSize = targetSize; // width & height
 
 	useEffect(() => {
 		onSetCirclePosition();
@@ -58,8 +59,8 @@ const Game: React.FC<Props> = ({ addHit }) => {
 	);
 };
 
-const mapStateToProps = ({ settings: { timer } }: Settings) => {
-	return { timer };
+const mapStateToProps = ({ settings: { timer, targetSize } }: Settings) => {
+	return { timer, targetSize };
 };
 
 const mapDispatchToProps = (dispatch: any) => {

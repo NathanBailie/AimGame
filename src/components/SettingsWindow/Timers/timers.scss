@@ -4,11 +4,12 @@
 	align-items: center;
 	border: 1px solid white;
 	padding: 10px;
-	min-height: 30px;
+	margin-bottom: 10px;
 
 	h2 {
 		color: Linen;
 		margin-right: 20px;
+		width: 60px;
 	}
 
 	&__timelist {
@@ -17,23 +18,26 @@
 		justify-content: center;
 		align-items: center;
 		height: 100%;
-
 	}
 
 	&__value {
+		width: 50px;
+		height: 40px;
 		font-size: 18px;
 		line-height: 18px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		cursor: pointer;
 		padding: 10px;
 		border-radius: 10px;
 		color: white;
+		cursor: pointer;
+
 
 		&:hover {
-			background: lightgrey;
-			color: darkviolet;
+			// background: lightgrey;
+			// color: darkviolet;
+			box-shadow: 0px 0px 4px 2px #ffffff;
 		}
 
 		&:not(:last-child) {
@@ -41,13 +45,14 @@
 		}
 
 		&_active {
-			background: grey;
+			// background: grey;
+			box-shadow: 0px 0px 4px 2px #ffffff;
 
 			&:hover {
-				background: grey;
+				// background: grey;
 				color: white;
+				box-shadow: 0px 0px 4px 2px #ffffff;
 			}
 		}
-
 	}
 }

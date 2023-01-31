@@ -26,6 +26,12 @@ const onChangeTimer = (value: StrNum) => {
 		payload: value,
 	};
 };
+const onChangeTargetSize = (value: StrNum) => {
+	return {
+		type: 'CHANGE_TARGET_SIZE',
+		payload: value,
+	};
+};
 const onAddHit = () => {
 	return {
 		type: 'ADD_HIT',
@@ -39,5 +45,6 @@ export {
 	onLaucnhGame,
 	onLaucnhResults,
 	onChangeTimer,
+	onChangeTargetSize,
 	onAddHit,
 };

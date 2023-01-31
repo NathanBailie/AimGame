@@ -9,6 +9,7 @@ export interface Windows {
 export interface Settings {
 	settings: {
 		timer: number,
+		targetSize: number
 	};
 };
 export interface Results {
