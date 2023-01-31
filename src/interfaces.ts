@@ -1,3 +1,5 @@
+import { StrNum } from './types';
+
 export interface Windows {
 	windows: {
 		greetings: boolean,
@@ -10,6 +12,7 @@ export interface Settings {
 	settings: {
 		timer: number,
 		targetSize: number
+		targetColor: StrNum[]
 	};
 };
 export interface Results {
@@ -19,6 +22,6 @@ export interface Results {
 };
 
 export interface Data {
-	value: string | number,
+	value: StrNum | StrNum[],
 	active: boolean,
 };

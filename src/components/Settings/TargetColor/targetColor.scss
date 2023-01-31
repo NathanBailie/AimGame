@@ -1,0 +1,45 @@
+.targetColor {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	border: 1px solid white;
+	padding: 10px;
+	margin-bottom: 10px;
+
+	h2 {
+		color: Linen;
+		margin-right: 20px;
+		width: 120px;
+	}
+
+	&__wraper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__ballWraper {
+		font-size: 18px;
+		line-height: 18px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		color: white;
+		cursor: pointer;
+		width: 55px;
+		height: 45px;
+
+		&:not(:last-child) {
+			margin-right: 10px;
+		}
+
+		&:hover {
+			box-shadow: 0px 0px 4px 2px #ffffff;
+		}
+
+		&_active {
+			box-shadow: 0px 0px 4px 2px #ffffff;
+		}
+	}
+}

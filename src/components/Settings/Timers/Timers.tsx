@@ -5,8 +5,8 @@ import { StrNum } from '../../../types';
 type Props = {
 	timers: Data[],
 	setTimers: (value: Data[]) => void,
-	onChangeProp: (settingData: Data[], setData: any, newValue: StrNum) => void
-	changeTimer: (value: StrNum) => void,
+	onChangeProp: (settingData: Data[], setData: any, newValue: StrNum | StrNum[]) => void
+	changeTimer: (value: StrNum | StrNum[]) => void,
 };
 
 

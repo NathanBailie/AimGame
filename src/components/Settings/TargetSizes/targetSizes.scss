@@ -9,7 +9,7 @@
 	h2 {
 		color: Linen;
 		margin-right: 20px;
-		width: 60px;
+		width: 120px;
 	}
 
 	&__wraper {
@@ -24,10 +24,11 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: 10px;
 		border-radius: 10px;
 		color: white;
 		cursor: pointer;
+		width: 55px;
+		height: 45px;
 
 		&:not(:last-child) {
 			margin-right: 10px;
@@ -38,7 +39,6 @@
 		}
 
 		&_active {
-			// background: grey;
 			box-shadow: 0px 0px 4px 2px #ffffff;
 		}
 	}
@@ -46,33 +46,4 @@
 	&__ball {
 		border-radius: 50%;
 	}
-
-	// &__value {
-	// 	display: flex;
-	// 	justify-content: center;
-	// 	align-items: center;
-	// 	cursor: pointer;
-	// 	// padding: 10px;
-	// 	border-radius: 50%;
-	// 	color: white;
-
-	// 	&:hover {
-	// 		border: 1px solid lightgrey;
-	// 		color: darkviolet;
-	// 	}
-
-	// 	&:not(:last-child) {
-	// 		margin-right: 10px;
-	// 	}
-
-	// 	&_active {
-	// 		background: grey;
-	// 		border: 1px solid lightgrey;
-
-	// 		&:hover {
-	// 			background: grey;
-	// 			color: white;
-	// 		}
-	// 	}
-	// }
 }

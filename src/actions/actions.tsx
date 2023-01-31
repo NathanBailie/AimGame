@@ -20,15 +20,21 @@ const onLaucnhResults = () => {
 		type: 'LAUNCH_RESULTS',
 	};
 };
-const onChangeTimer = (value: StrNum) => {
+const onChangeTimer = (value: StrNum | StrNum[]) => {
 	return {
 		type: 'CHANGE_TIMER',
 		payload: value,
 	};
 };
-const onChangeTargetSize = (value: StrNum) => {
+const onChangeTargetSize = (value: StrNum | StrNum[]) => {
 	return {
 		type: 'CHANGE_TARGET_SIZE',
+		payload: value,
+	};
+};
+const onChangeTargetColor = (value: StrNum | StrNum[]) => {
+	return {
+		type: 'CHANGE_TARGET_COLOR',
 		payload: value,
 	};
 };
@@ -46,5 +52,6 @@ export {
 	onLaucnhResults,
 	onChangeTimer,
 	onChangeTargetSize,
+	onChangeTargetColor,
 	onAddHit,
 };
