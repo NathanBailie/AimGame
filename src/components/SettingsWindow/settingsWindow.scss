@@ -33,59 +33,7 @@
 		}
 	}
 
-	&__time {
-		display: flex;
-		justify-content: left;
-		align-items: center;
-		border: 1px solid white;
-		padding: 10px;
-		min-height: 30px;
 
-		h2 {
-			color: Linen;
-			margin-right: 20px;
-		}
-	}
-
-	&__timelist {
-		list-style-type: none;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-
-	}
-
-	&__timeSetting {
-		font-size: 18px;
-		line-height: 18px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		cursor: pointer;
-		padding: 10px;
-		border-radius: 10px;
-		color: white;
-
-		&:hover {
-			background: lightgrey;
-			color: darkviolet;
-		}
-
-		&:not(:last-child) {
-			margin-right: 10px;
-		}
-
-		&_active {
-			background: grey;
-
-			&:hover {
-				background: grey;
-				color: white;
-			}
-		}
-
-	}
 
 	// &__timeWraper {
 	// 	display: flex;

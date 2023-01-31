@@ -1,53 +1,36 @@
 import './settingsWindow.scss';
 import { useState, useEffect } from 'react';
+import Timers from './Timers/Timers';
 import uuid from 'react-uuid';
 import compose from '../../utils/compose';
 import { connect } from 'react-redux';
-import { onLaucnhMain, onChageTimer } from '../../actions/actions';
-import { Settings } from '../../interfaces';
+import { onLaucnhMain, onChangeTimer } from '../../actions/actions';
+import { Settings, Data } from '../../interfaces';
+import { StrNum } from '../../types';
 
-interface Props {
+type Props = {
 	laucnhMain: () => void,
-	changeTimer: (count: number) => void,
+	changeTimer: (value: StrNum) => void,
 	timer: number,
 };
 
 const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer }) => {
-	const timers = [
-		{ count: 10, id: uuid(), active: true },
-		{ count: 20, id: uuid(), active: false },
-		{ count: 30, id: uuid(), active: false },
-		{ count: 40, id: uuid(), active: false },
-		{ count: 50, id: uuid(), active: false },
-		{ count: 60, id: uuid(), active: false },
-	];
-	const [data, setData] = useState(timers);
+	const [timers, setTimers] = useState(onCreateSetting([10, 20, 30, 40, 50, 60]));
 
 	useEffect(() => {
-		onChangeProp(timer);
+		onChangeProp(timers, setTimers, timer);
 	}, []);
 
-	const timersResult = data.map(item => {
-		const { count, id, active } = item;
-		let classes = 'settings__timeSetting';
-		if (active) {
-			classes += ' settings__timeSetting_active';
-		};
+	function onCreateSetting(settingValues: StrNum[]): Data[] {
+		const result = settingValues.map((value, index) => {
+			return { value: value, active: false };
+		});
+		return result;
+	};
 
-		return (
-			<li
-				key={id}
-				onClick={() => { changeTimer(count); onChangeProp(count) }}
-				className={classes}
-			>
-				{`${count}s`}
-			</li>
-		);
-	});
-
-	function onChangeProp(count: number): void {
-		const newData = data.map(item => {
-			if (item.count === count) {
+	function onChangeProp(settingData: Data[], setData: any, newValue: StrNum): void {
+		const newData = settingData.map(item => {
+			if (item.value === newValue) {
 				return { ...item, ['active']: true };
 			}
 			return { ...item, ['active']: false };
@@ -58,15 +41,13 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer }) => 
 
 	return (
 		<div className="settings">
-			<h1
-				className='settings__title'
-			>Settings</h1>
-			<div className="settings__time">
-				<h2>Time: </h2>
-				<ul className='settings__timelist'>
-					{timersResult}
-				</ul>
-			</div>
+			<h1 className='settings__title'>Settings</h1>
+			<Timers
+				timers={timers}
+				setTimers={setTimers}
+				onChangeProp={onChangeProp}
+				changeTimer={changeTimer}
+			/>
 			<button
 				className='settings__back'
 				onClick={() => laucnhMain()}
@@ -83,7 +64,7 @@ const mapStateToProps = ({ settings: { timer } }: Settings) => {
 const mapDispatchToProps = (dispatch: any) => {
 	return {
 		laucnhMain: () => dispatch(onLaucnhMain()),
-		changeTimer: (timer: number) => dispatch(onChageTimer(timer)),
+		changeTimer: (value: StrNum) => dispatch(onChangeTimer(value)),
 	};
 };
 

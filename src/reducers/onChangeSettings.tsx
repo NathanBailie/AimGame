@@ -7,7 +7,7 @@ const onChangeSettings = (state: any, action: any) => {
 	switch (action.type) {
 		case 'CHANGE_TIMER':
 			return {
-				timer: action.payload,
+				timer: Number(action.payload),
 			};
 
 		default:

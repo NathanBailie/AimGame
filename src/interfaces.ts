@@ -16,3 +16,8 @@ export interface Results {
 		hits: number,
 	};
 };
+
+export interface Data {
+	value: string | number,
+	active: boolean,
+};

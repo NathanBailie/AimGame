@@ -1,3 +1,5 @@
+import { StrNum } from '../types';
+
 const onLaucnhMain = () => {
 	return {
 		type: 'LAUNCH_MAIN',
@@ -18,10 +20,10 @@ const onLaucnhResults = () => {
 		type: 'LAUNCH_RESULTS',
 	};
 };
-const onChageTimer = (timer: number) => {
+const onChangeTimer = (value: StrNum) => {
 	return {
 		type: 'CHANGE_TIMER',
-		payload: timer,
+		payload: value,
 	};
 };
 const onAddHit = () => {
@@ -36,6 +38,6 @@ export {
 	onLaucnhMain,
 	onLaucnhGame,
 	onLaucnhResults,
-	onChageTimer,
+	onChangeTimer,
 	onAddHit,
 };
