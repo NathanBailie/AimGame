@@ -3,15 +3,52 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	border: 1px solid white;
+	// border: 1px solid white;
+	// border-radius: 15px;
 	padding: 15px;
+	// width: 575px;
+	// height: 530px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 
 	&__score {
-		color: white;
+		color: #d7e9ff;
 		font-size: 36px;
+		text-align: center;
+		border: 1px solid white;
+		width: 400px;
+		height: 150px;
+		border-radius: 15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 15px;
 
 		span {
 			color: #c0d939;
+		}
+	}
+
+	&__wraper {
+		display: flex;
+		justify-content: space-around;
+	}
+
+	&__button {
+		border: none;
+		background: none;
+		color: white;
+		font-size: 28px;
+		cursor: pointer;
+
+		&:hover {
+			color: Bisque;
+			transform: scale(1.02);
+		}
+
+		&:active {
+			transform: scale(0.99);
 		}
 	}
 }

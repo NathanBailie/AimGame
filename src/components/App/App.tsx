@@ -1,6 +1,5 @@
 import 'normalize.css';
 import './app.scss';
-import { useState } from 'react';
 import GreetingWindow from '../GreetingWindow/GreeetingWindow';
 import GameWindow from '../Game/GameWindow';
 import ResultsWindow from '../ResultsWindow/ResultsWindow';
@@ -9,14 +8,12 @@ import compose from '../../utils/compose';
 import { connect } from 'react-redux';
 import { Windows } from '../../interfaces';
 
-
 interface Props extends Windows {
 	launchGame: () => void,
 };
 
 const App: React.FC<Props> = ({ windows }) => {
 	const { greetings, game, setting, results } = windows;
-
 
 	return (
 		<div className="app">
