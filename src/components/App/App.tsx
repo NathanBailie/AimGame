@@ -1,7 +1,7 @@
 import 'normalize.css';
 import './app.scss';
 import GreetingWindow from '../GreetingWindow/GreeetingWindow';
-import GameWindow from '../Game/GameWindow';
+import GameWindow from '../GameWindow/GameWindow';
 import ResultsWindow from '../ResultsWindow/ResultsWindow';
 import SettingsWindow from '../SettingsWindow/SettingsWindow';
 import compose from '../../utils/compose';

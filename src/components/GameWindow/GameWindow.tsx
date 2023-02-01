@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { onAddHit, onLaucnhSettings, onLaucnhGame, onCloseGame } from '../../actions/actions';
 import { Settings } from '../../interfaces';
 import { StrNum } from '../../types';
+import shot from './shot.mp3';
 
 type Props = {
 	addHit: () => void,
@@ -37,6 +38,12 @@ const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor, la
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	};
 
+	function onPlaySound() {
+		let audio = new Audio(shot);
+		audio.autoplay = true;
+		audio.play();
+	};
+
 	return (
 		<div className="game">
 			<div className="game__timer">
@@ -61,6 +68,7 @@ const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor, la
 					onClick={(e) => {
 						onSetCirclePosition();
 						addHit();
+						onPlaySound()
 					}}
 				></div>
 			</div>

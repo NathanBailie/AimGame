@@ -9,7 +9,10 @@ const gameResults = (state: any, action: any) => {
 			return {
 				hits: state.results.hits + action.payload,
 			};
-
+		case 'LAUNCH_GAME':
+			return {
+				hits: 0,
+			};
 		default:
 			return state.results;
 	}
