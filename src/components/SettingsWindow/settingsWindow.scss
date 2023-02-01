@@ -19,14 +19,13 @@
 		border: none;
 		background: none;
 		color: white;
-		font-size: 30px;
-		// bottom: 15px;
-		margin: 15px 10px 0 auto;
+		font-size: 32px;
+		margin: 25px 15px 0 auto;
 		cursor: pointer;
 
 		&:hover {
 			color: Bisque;
-			transform: scale(1.01);
+			transform: scale(1.02);
 		}
 
 		&:active {
