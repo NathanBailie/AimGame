@@ -4,6 +4,7 @@ const onChangeSettings = (state: any, action: any) => {
 			timer: 10,
 			targetSize: 35,
 			targetColor: ['#9e9ae9', 'blue'],
+			boardColor: '#95927c',
 		};
 	};
 	switch (action.type) {
@@ -21,6 +22,11 @@ const onChangeSettings = (state: any, action: any) => {
 			return {
 				...state.settings,
 				targetColor: action.payload,
+			};
+		case 'CHANGE_BOARD_COLOR':
+			return {
+				...state.settings,
+				boardColor: action.payload,
 			};
 		default:
 			return state.settings;

@@ -2,14 +2,15 @@
 	display: flex;
 	justify-content: left;
 	align-items: center;
-	border: 1px solid white;
 	padding: 10px;
 	margin-bottom: 10px;
+	border: 1px solid lightgrey;
+	border-radius: 10px;
 
 	h2 {
 		color: Linen;
 		margin-right: 20px;
-		width: 120px;
+		width: 145px;
 	}
 
 	&__wraper {

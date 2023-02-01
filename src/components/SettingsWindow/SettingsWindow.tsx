@@ -1,11 +1,12 @@
 import './settingsWindow.scss';
 import Timers from '../Settings/Timers/Timers';
 import TargetSizes from '../Settings/TargetSizes/TargetSizes';
-import TargetColor from '../Settings/TargetColor/TargetColor';
+import TargetColors from '../Settings/TargetColors/TargetColors';
+import BoardColors from '../Settings/BoardColors/BoardColors';
 import { useState, useEffect } from 'react';
 import compose from '../../utils/compose';
 import { connect } from 'react-redux';
-import { onLaucnhMain, onChangeTimer, onChangeTargetSize, onChangeTargetColor } from '../../actions/actions';
+import { onLaucnhMain, onChangeTimer, onChangeTargetSize, onChangeTargetColor, onChangeBoardColor } from '../../actions/actions';
 import { Settings, Data } from '../../interfaces';
 import { StrNum } from '../../types';
 
@@ -17,9 +18,11 @@ type Props = {
 	targetSize: number,
 	changeTargetColor: (value: StrNum | StrNum[]) => void,
 	targetColor: StrNum[],
+	changeBoardColor: (value: StrNum | StrNum[]) => void,
+	boardColor: string,
 };
 
-const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, changeTargetSize, targetSize, changeTargetColor, targetColor }) => {
+const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, changeTargetSize, targetSize, changeTargetColor, targetColor, changeBoardColor, boardColor }) => {
 	const settings = {
 		timers: [10, 20, 30, 40, 50, 60],
 		targetSizes: [15, 20, 25, 30, 35, 40],
@@ -31,17 +34,20 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 			['#ca88db', '#7a0a8f'],
 			['#9e9ae9', 'blue'],
 		],
+		boardColors: ['#749599', '#7e8095', '#596878', '#95927c', '#5b8d5f', '#a39584'],
 	};
 
 
 	const [timers, setTimers] = useState(onCreateSetting(settings['timers']));
 	const [sizes, setSizes] = useState(onCreateSetting(settings['targetSizes']));
 	const [targetColors, setTargetColors] = useState(onCreateSetting(settings['targetColors']));
+	const [boardColors, setBoardColors] = useState(onCreateSetting(settings['boardColors']));
 
 	useEffect(() => {
 		onChangeProp(timers, setTimers, timer);
 		onChangeProp(sizes, setSizes, targetSize);
 		onChangeProp(targetColors, setTargetColors, targetColor);
+		onChangeProp(boardColors, setBoardColors, boardColor);
 	}, []);
 
 	function onCreateSetting(settingValues: StrNum[] | StrNum[][]): Data[] {
@@ -88,12 +94,19 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 				changeTargetSize={changeTargetSize}
 				targetColor={targetColor}
 			/>
-			<TargetColor
+			<TargetColors
 				targetColors={targetColors}
 				setTargetColors={setTargetColors}
 				onChangeProp={onChangeProp}
 				changeTargetColor={changeTargetColor}
 			/>
+			<BoardColors
+				boardColors={boardColors}
+				setBoardColors={setBoardColors}
+				onChangeProp={onChangeProp}
+				changeBoardColor={changeBoardColor}
+			/>
+
 			<button
 				className='settings__back'
 				onClick={() => laucnhMain()}
@@ -103,8 +116,8 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 	);
 };
 
-const mapStateToProps = ({ settings: { timer, targetSize, targetColor } }: Settings) => {
-	return { timer, targetSize, targetColor };
+const mapStateToProps = ({ settings: { timer, targetSize, targetColor, boardColor } }: Settings) => {
+	return { timer, targetSize, targetColor, boardColor };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -113,6 +126,7 @@ const mapDispatchToProps = (dispatch: any) => {
 		changeTimer: (value: StrNum | StrNum[]) => dispatch(onChangeTimer(value)),
 		changeTargetSize: (value: StrNum | StrNum[]) => dispatch(onChangeTargetSize(value)),
 		changeTargetColor: (value: StrNum | StrNum[]) => dispatch(onChangeTargetColor(value)),
+		changeBoardColor: (value: StrNum | StrNum[]) => dispatch(onChangeBoardColor(value)),
 	};
 };
 

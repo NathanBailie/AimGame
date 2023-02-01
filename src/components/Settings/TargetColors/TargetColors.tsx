@@ -1,4 +1,4 @@
-import './targetColor.scss';
+import './targetColors.scss';
 import { Data } from '../../../interfaces';
 import { StrNum } from '../../../types';
 
@@ -9,7 +9,7 @@ type Props = {
 	changeTargetColor: (value: StrNum | StrNum[]) => void,
 };
 
-const TargetColor: React.FC<Props> = ({ targetColors, setTargetColors, onChangeProp, changeTargetColor }) => {
+const TargetColors: React.FC<Props> = ({ targetColors, setTargetColors, onChangeProp, changeTargetColor }) => {
 	const result = targetColors.map((item: Data, index) => {
 		const { value, active } = item;
 
@@ -26,13 +26,14 @@ const TargetColor: React.FC<Props> = ({ targetColors, setTargetColors, onChangeP
 				onClick={() => { changeTargetColor(value); onChangeProp(targetColors, setTargetColors, value) }}
 			>
 				<div
-					className={'targetSizes__ball'}
-					style={{ height: `${40}px`, width: `${40}px`, background: `radial-gradient(${color1}, ${color2})` }}
+					className={'targetColor__ball'}
+					style={{ background: `radial-gradient(${color1}, ${color2})` }}
 				>
 				</div>
 			</div>
 		);
 	});
+
 	return (
 		<div className="targetColor">
 			<h2>Ball color: </h2>
@@ -43,4 +44,4 @@ const TargetColor: React.FC<Props> = ({ targetColors, setTargetColors, onChangeP
 	);
 };
 
-export default TargetColor;
+export default TargetColors;

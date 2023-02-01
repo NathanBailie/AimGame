@@ -38,6 +38,12 @@ const onChangeTargetColor = (value: StrNum | StrNum[]) => {
 		payload: value,
 	};
 };
+const onChangeBoardColor = (value: StrNum | StrNum[]) => {
+	return {
+		type: 'CHANGE_BOARD_COLOR',
+		payload: value,
+	};
+};
 const onAddHit = () => {
 	return {
 		type: 'ADD_HIT',
@@ -53,5 +59,6 @@ export {
 	onChangeTimer,
 	onChangeTargetSize,
 	onChangeTargetColor,
+	onChangeBoardColor,
 	onAddHit,
 };

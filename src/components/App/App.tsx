@@ -2,7 +2,7 @@ import 'normalize.css';
 import './app.scss';
 import { useState } from 'react';
 import GreetingWindow from '../GreetingWindow/GreeetingWindow';
-import GameWindow from '../Game/Game';
+import GameWindow from '../Game/GameWindow';
 import ResultsWindow from '../ResultsWindow/ResultsWindow';
 import SettingsWindow from '../SettingsWindow/SettingsWindow';
 import compose from '../../utils/compose';

@@ -1,4 +1,4 @@
-import './game.scss';
+import './gameWindow.scss';
 import Timer from '../Timer/Timer';
 import { useState, useEffect } from 'react';
 import compose from '../../utils/compose';
@@ -10,10 +10,11 @@ import { StrNum } from '../../types';
 type Props = {
 	addHit: () => void,
 	targetSize: number,
-	targetColor: StrNum[];
+	targetColor: StrNum[],
+	boardColor: string,
 }
 
-const Game: React.FC<Props> = ({ addHit, targetSize, targetColor }) => {
+const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor }) => {
 	const [xPos, setXPos] = useState<number | undefined>();
 	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
@@ -43,6 +44,7 @@ const Game: React.FC<Props> = ({ addHit, targetSize, targetColor }) => {
 				style={{
 					width: `${boardSize}px`,
 					height: `${boardSize}px`,
+					background: `${boardColor}`
 				}}
 			>
 				<div
@@ -63,8 +65,8 @@ const Game: React.FC<Props> = ({ addHit, targetSize, targetColor }) => {
 	);
 };
 
-const mapStateToProps = ({ settings: { timer, targetSize, targetColor } }: Settings) => {
-	return { timer, targetSize, targetColor };
+const mapStateToProps = ({ settings: { timer, targetSize, targetColor, boardColor } }: Settings) => {
+	return { timer, targetSize, targetColor, boardColor };
 };
 
 const mapDispatchToProps = (dispatch: any) => {

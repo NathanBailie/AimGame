@@ -11,8 +11,9 @@ export interface Windows {
 export interface Settings {
 	settings: {
 		timer: number,
-		targetSize: number
-		targetColor: StrNum[]
+		targetSize: number,
+		targetColor: StrNum[],
+		boardColor: string,
 	};
 };
 export interface Results {
