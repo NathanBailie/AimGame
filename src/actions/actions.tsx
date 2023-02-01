@@ -44,6 +44,11 @@ const onChangeBoardColor = (value: StrNum | StrNum[]) => {
 		payload: value,
 	};
 };
+const onCloseGame = () => {
+	return {
+		type: 'CLOSE_GAME',
+	};
+};
 const onAddHit = () => {
 	return {
 		type: 'ADD_HIT',
@@ -60,5 +65,6 @@ export {
 	onChangeTargetSize,
 	onChangeTargetColor,
 	onChangeBoardColor,
+	onCloseGame,
 	onAddHit,
 };

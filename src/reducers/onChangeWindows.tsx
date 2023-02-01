@@ -36,6 +36,13 @@ const onChangeWindows = (state: any, action: any) => {
 				game: false,
 				results: true,
 			};
+		case 'CLOSE_GAME':
+			return {
+				greetings: false,
+				setting: false,
+				game: false,
+				results: false,
+			};
 		default:
 			return state.windows;
 	}

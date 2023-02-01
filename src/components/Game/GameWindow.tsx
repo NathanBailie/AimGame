@@ -3,7 +3,7 @@ import Timer from '../Timer/Timer';
 import { useState, useEffect } from 'react';
 import compose from '../../utils/compose';
 import { connect } from 'react-redux';
-import { onAddHit } from '../../actions/actions';
+import { onAddHit, onLaucnhSettings, onLaucnhGame, onCloseGame } from '../../actions/actions';
 import { Settings } from '../../interfaces';
 import { StrNum } from '../../types';
 
@@ -12,9 +12,12 @@ type Props = {
 	targetSize: number,
 	targetColor: StrNum[],
 	boardColor: string,
+	laucnhSettings: () => void,
+	laucnhGame: () => void,
+	closeGame: () => void,
 }
 
-const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor }) => {
+const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor, laucnhSettings, laucnhGame, closeGame }) => {
 	const [xPos, setXPos] = useState<number | undefined>();
 	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
@@ -61,6 +64,16 @@ const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor }) 
 					}}
 				></div>
 			</div>
+			<div className="game__wraper">
+				<button
+					className='game__button'
+					onClick={() => laucnhSettings()}
+				>Settings</button>
+				<button
+					className='game__button'
+					onClick={() => { closeGame(); setTimeout(() => { laucnhGame() }, 0) }}
+				>Restart</button>
+			</div>
 		</div >
 	);
 };
@@ -72,6 +85,9 @@ const mapStateToProps = ({ settings: { timer, targetSize, targetColor, boardColo
 const mapDispatchToProps = (dispatch: any) => {
 	return {
 		addHit: () => dispatch(onAddHit()),
+		laucnhSettings: () => dispatch(onLaucnhSettings()),
+		laucnhGame: () => dispatch(onLaucnhGame()),
+		closeGame: () => dispatch(onCloseGame()),
 	};
 };
 

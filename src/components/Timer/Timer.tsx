@@ -12,7 +12,7 @@ type Props = {
 const Timer: React.FC<Props> = ({ timer, launchResults }) => {
 	const [minutes, setMinutes] = useState(0);
 	const [seconds, setSeconds] = useState(timer);
-	const timerID: { current: any } | undefined = useRef();
+	const timerID: { current: any } = useRef();
 
 	useEffect(() => {
 		timerID.current = setInterval(() => tick(), 1000)
@@ -35,7 +35,11 @@ const Timer: React.FC<Props> = ({ timer, launchResults }) => {
 
 	return (
 		<div className="timer">
-			<p>{`${minutes} : ${seconds}`}</p>
+			<p>{
+				`${minutes < 10 ? `0${minutes}` : minutes} 
+				: 
+				${seconds < 10 ? `0${seconds}` : seconds}`
+			}</p>
 		</div>
 	);
 };

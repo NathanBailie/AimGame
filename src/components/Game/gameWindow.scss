@@ -18,6 +18,7 @@
 		box-shadow: inset 0px 0px 3px 1px lightblue;
 		border-radius: 20px;
 		position: relative;
+		margin-bottom: 15px;
 	}
 
 	&__circle {
@@ -26,6 +27,28 @@
 
 		&:hover {
 			cursor: pointer;
+		}
+	}
+
+	&__wraper {
+		display: flex;
+		justify-content: space-around;
+	}
+
+	&__button {
+		border: none;
+		background: none;
+		color: white;
+		font-size: 28px;
+		cursor: pointer;
+
+		&:hover {
+			color: Bisque;
+			transform: scale(1.02);
+		}
+
+		&:active {
+			transform: scale(0.99);
 		}
 	}
 }
