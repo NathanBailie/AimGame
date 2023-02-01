@@ -53,8 +53,8 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 
 	function onChangeProp(settingData: Data[], setData: any, newValue: StrNum | StrNum[]): void {
 		const newData = settingData.map(item => {
-			if (Array.isArray(item)) {
-				if (onCompareArrays(item, newValue)) {
+			if (Array.isArray(item.value)) {
+				if (onCompareArrays(item.value, newValue)) {
 					return { ...item, ['active']: true };
 				};
 				return { ...item, ['active']: false };
