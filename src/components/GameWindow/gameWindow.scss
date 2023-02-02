@@ -17,16 +17,13 @@
 		border-radius: 20px;
 		position: relative;
 		margin-bottom: 15px;
+		cursor: crosshair;
 	}
 
 	&__circle {
 		position: absolute;
 		border-radius: 50%;
 		box-shadow: 3px 3px 4px 1px rgb(85, 85, 85);
-
-		&:hover {
-			cursor: pointer;
-		}
 	}
 
 

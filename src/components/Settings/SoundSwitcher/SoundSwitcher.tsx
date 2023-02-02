@@ -32,7 +32,7 @@ const SoundSwitcher: React.FC<Props> = ({ soundParams, setSoundParams, onChangeP
 
 	return (
 		<div className="soundSwitcher">
-			<h2>Board color: </h2>
+			<h2>Sound: </h2>
 			<div className="soundSwitcher__wraper">
 				{result}
 			</div>

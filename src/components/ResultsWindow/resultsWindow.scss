@@ -21,6 +21,7 @@
 		justify-content: center;
 		align-items: center;
 		border-bottom: 1px solid #787878;
+		padding: 10px 15px;
 
 		&:not(:last-child) {
 			margin-bottom: 10px;
@@ -36,7 +37,6 @@
 			color: #c0d939;
 			font-size: 30px;
 			width: 90px;
-			// text-align: left;
 			text-align: center;
 		}
 	}
