@@ -67,6 +67,17 @@ const onAddHit = () => {
 		payload: 1,
 	};
 };
+const onAddMissclick = () => {
+	return {
+		type: 'ADD_MISSCLICK',
+		payload: 1,
+	};
+};
+const onCountAccuracy = () => {
+	return {
+		type: 'COUNT_ACCURACY',
+	};
+};
 
 export {
 	onLaucnhSettings,
@@ -81,4 +92,6 @@ export {
 	onChangeClickSound,
 	onCloseGame,
 	onAddHit,
+	onAddMissclick,
+	onCountAccuracy,
 };

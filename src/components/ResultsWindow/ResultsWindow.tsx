@@ -6,16 +6,30 @@ import { onLaucnhSettings, onLaucnhGame } from '../../actions/actions';
 
 type Props = {
 	hits: number,
+	missclicks: number,
+	accuracy: number,
 	laucnhSettings: () => void,
 	laucnhGame: () => void,
 };
 
-const ResultsWindow: React.FC<Props> = ({ hits, laucnhSettings, laucnhGame }) => {
+const ResultsWindow: React.FC<Props> = ({ hits, missclicks, accuracy, laucnhSettings, laucnhGame }) => {
 	return (
 		<div className="results">
-			<p className='results__score'>
-				Your score: <span>&nbsp;{hits}</span>
-			</p>
+			<div className="results__score">
+				<div className="results__result">
+					<p>Score:</p>
+					<span>{hits}</span>
+				</div>
+				<div className="results__result">
+					<p>Missclicks:</p>
+					<span>{missclicks}</span>
+				</div>
+				<div className="results__result">
+					<p>Accuracy:</p>
+					<span>{`${Math.round(accuracy)}%`}</span>
+				</div>
+			</div>
+
 			<div className="results__wraper">
 				<button
 					className='results__button'
@@ -31,9 +45,9 @@ const ResultsWindow: React.FC<Props> = ({ hits, laucnhSettings, laucnhGame }) =>
 };
 
 const mapStateToProps = (
-	{ results: { hits } }: Results,
+	{ results: { hits, missclicks, accuracy } }: Results,
 ) => {
-	return { hits };
+	return { hits, missclicks, accuracy };
 };
 
 const mapDispatchToProps = (dispatch: any) => {

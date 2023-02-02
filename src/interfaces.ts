@@ -21,6 +21,8 @@ export interface Settings {
 export interface Results {
 	results: {
 		hits: number,
+		missclicks: number,
+		accuracy: number,
 	};
 };
 

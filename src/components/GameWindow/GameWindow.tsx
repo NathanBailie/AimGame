@@ -5,17 +5,19 @@ import sound2 from '../../resources/sounds/click/sound2.mp3';
 import sound3 from '../../resources/sounds/click/sound3.mp3';
 import sound4 from '../../resources/sounds/click/sound4.mp3';
 import sound5 from '../../resources/sounds/click/sound5.mp3';
+import missclick from '../../resources/sounds/missclick/missclick.mp3';
 import Timer from '../Timer/Timer';
 import { useState, useEffect } from 'react';
 import compose from '../../utils/compose';
 import { connect } from 'react-redux';
-import { onAddHit, onLaucnhSettings, onLaucnhGame, onCloseGame } from '../../actions/actions';
+import { onAddHit, onAddMissclick, onLaucnhSettings, onLaucnhGame, onCloseGame } from '../../actions/actions';
 import { Settings } from '../../interfaces';
 import { StrNum } from '../../types';
 
 
 type Props = {
 	addHit: () => void,
+	addMissclick: () => void,
 	targetSize: number,
 	targetColor: StrNum[],
 	boardColor: string,
@@ -26,7 +28,7 @@ type Props = {
 	sound: string,
 }
 
-const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor, laucnhSettings, laucnhGame, closeGame, clickSound, sound }) => {
+const Game: React.FC<Props> = ({ addHit, addMissclick, targetSize, targetColor, boardColor, laucnhSettings, laucnhGame, closeGame, clickSound, sound }) => {
 	const [xPos, setXPos] = useState<number | undefined>();
 	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
@@ -48,11 +50,22 @@ const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor, la
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	};
 
-	function onPlaySound() {
-		let audio = new Audio(allSounds[clickSound - 1]);
+	function onPlaySound(file: any) {
+		let audio = new Audio(file);
 		audio.autoplay = true;
 		audio.volume = 0.5;
 		audio.play();
+	};
+
+	function onCheckTarget(e: any): void {
+		const target = e.target as HTMLElement;
+		if (target.className === 'game__board') {
+			addMissclick()
+			{ sound === 'on' && onPlaySound(missclick) }
+		} else if (target.className === 'game__circle') {
+			addHit();
+			{ sound === 'on' && onPlaySound(allSounds[clickSound - 1]) }
+		};
 	};
 
 	return (
@@ -67,6 +80,7 @@ const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor, la
 					height: `${boardSize}px`,
 					background: `${boardColor}`
 				}}
+				onClick={(e) => onCheckTarget(e)}
 			>
 				<div
 					className="game__circle"
@@ -76,23 +90,17 @@ const Game: React.FC<Props> = ({ addHit, targetSize, targetColor, boardColor, la
 						top: `${xPos}px`, left: `${yPos}px`,
 						background: `radial-gradient(${color1}, ${color2})`
 					}}
-					onClick={(e) => {
-						onSetCirclePosition();
-						addHit();
-						{ sound === 'on' && onPlaySound() }
-					}}
+					onClick={(e) => onSetCirclePosition()}
 				></div>
 			</div>
-			<div className="game__wraper">
-				<button
-					className='game__button'
-					onClick={() => laucnhSettings()}
-				>Settings</button>
-				<button
-					className='game__button'
-					onClick={() => { closeGame(); setTimeout(() => { laucnhGame() }, 0) }}
-				>Restart</button>
-			</div>
+			<button
+				className='game__button game__button_settings'
+				onClick={() => laucnhSettings()}
+			>Settings</button>
+			<button
+				className='game__button game__button_restart'
+				onClick={() => { closeGame(); setTimeout(() => { laucnhGame() }, 0) }}
+			>Restart</button>
 		</div >
 	);
 };
@@ -104,6 +112,7 @@ const mapStateToProps = ({ settings: { timer, targetSize, targetColor, boardColo
 const mapDispatchToProps = (dispatch: any) => {
 	return {
 		addHit: () => dispatch(onAddHit()),
+		addMissclick: () => dispatch(onAddMissclick()),
 		laucnhSettings: () => dispatch(onLaucnhSettings()),
 		laucnhGame: () => dispatch(onLaucnhGame()),
 		closeGame: () => dispatch(onCloseGame()),

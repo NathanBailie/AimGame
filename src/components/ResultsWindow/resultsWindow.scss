@@ -9,20 +9,35 @@
 	justify-content: center;
 
 	&__score {
-		color: #d7e9ff;
-		font-size: 36px;
-		text-align: center;
-		border: 1px solid white;
-		width: 400px;
-		height: 150px;
-		border-radius: 15px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 35px;
+	}
+
+	&__result {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-bottom: 15px;
+		border-bottom: 1px solid #787878;
+
+		&:not(:last-child) {
+			margin-bottom: 10px;
+		}
+
+		p {
+			color: #d7e9ff;
+			width: 150px;
+			font-size: 30px;
+		}
 
 		span {
 			color: #c0d939;
+			font-size: 30px;
+			width: 90px;
+			// text-align: left;
+			text-align: center;
 		}
 	}
 
