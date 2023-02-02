@@ -33,8 +33,10 @@ const Game: React.FC<Props> = ({ addHit, addMissclick, targetSize, targetColor, 
 	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
 	const circleSize = targetSize; // width & height
-	const [color1, color2]: any = targetColor;
+	const [tarColor1, tarColor2]: any = targetColor;
 	const allSounds = [sound1, sound2, sound3, sound4, sound5, sound6];
+	const [dir, boardColor1, boardColor2]: any = boardColor;
+
 
 
 	useEffect(() => {
@@ -76,9 +78,9 @@ const Game: React.FC<Props> = ({ addHit, addMissclick, targetSize, targetColor, 
 			<div
 				className="game__board"
 				style={{
-					width: `${boardSize}px`,
+					width: `${boardSize + boardSize * 0.4}px`,
 					height: `${boardSize}px`,
-					background: `${boardColor}`
+					background: `linear-gradient(${dir}, ${boardColor1}, ${boardColor2})`
 				}}
 				onClick={(e) => onCheckTarget(e)}
 			>
@@ -88,7 +90,7 @@ const Game: React.FC<Props> = ({ addHit, addMissclick, targetSize, targetColor, 
 						width: `${circleSize}px`,
 						height: `${circleSize}px`,
 						top: `${xPos}px`, left: `${yPos}px`,
-						background: `radial-gradient(${color1}, ${color2})`
+						background: `radial-gradient(${tarColor1}, ${tarColor2})`
 					}}
 					onClick={(e) => onSetCirclePosition()}
 				></div>

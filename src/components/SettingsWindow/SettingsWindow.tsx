@@ -38,9 +38,16 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 			['#f1a091', '#d13a20'],
 			['#ffbd45', 'darkorange'],
 			['#ca88db', '#7a0a8f'],
-			['#9e9ae9', 'blue'],
+			['#7b77cb', '#1d1dc1'],
 		],
-		boardColors: ['#749599', '#7e8095', '#596878', '#95927c', '#5b8d5f', '#a39584'],
+		boardColors: [
+			['to top', '#453e56', '#524766'],
+			['to top', '#524376', '#54668f'],
+			['to right', '#2d7699', '#56388f'],
+			['to right', '#45834a', '#256e2a'],
+			['to right', '#7e7070', '#625353'],
+			['to right', '#9d9999', '#787575'],
+		],
 		sound: ['on', 'off'],
 		clickSounds: [1, 2, 3, 4, 5, 6],
 	};

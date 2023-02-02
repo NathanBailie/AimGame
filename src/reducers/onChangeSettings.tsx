@@ -3,8 +3,8 @@ const onChangeSettings = (state: any, action: any) => {
 		return {
 			timer: 10,
 			targetSize: 35,
-			targetColor: ['#9e9ae9', 'blue'],
-			boardColor: '#95927c',
+			targetColor: ['#7b77cb', '#1d1dc1'],
+			boardColor: ['to right', '#7e7070', '#625353'],
 			sound: 'on',
 			clickSound: 5,
 		};

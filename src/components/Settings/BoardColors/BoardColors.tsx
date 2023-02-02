@@ -12,6 +12,7 @@ type Props = {
 const BoardColors: React.FC<Props> = ({ boardColors, setBoardColors, onChangeProp, changeBoardColor }) => {
 	const result = boardColors.map((item: Data, index) => {
 		const { value, active } = item;
+		const [dir, color1, color2]: any = value;
 
 		let classes = 'boardColors__itemWraper';
 		if (active) {
@@ -26,10 +27,10 @@ const BoardColors: React.FC<Props> = ({ boardColors, setBoardColors, onChangePro
 			>
 				<div
 					className={'boardColors__boardColor'}
-					style={{ background: `${value}` }}
+					style={{ background: `linear-gradient(${dir}, ${color1}, ${color2})` }}
 				>
 				</div>
-			</div>
+			</div >
 		);
 	});
 
