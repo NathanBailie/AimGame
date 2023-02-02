@@ -1,12 +1,12 @@
 import './clickSounds.scss';
 import { Data } from '../../../interfaces';
 import { StrNum } from '../../../types';
-import sound from '../../../resources/sounds/click/sound.mp3';
 import sound1 from '../../../resources/sounds/click/sound1.mp3';
 import sound2 from '../../../resources/sounds/click/sound2.mp3';
 import sound3 from '../../../resources/sounds/click/sound3.mp3';
 import sound4 from '../../../resources/sounds/click/sound4.mp3';
 import sound5 from '../../../resources/sounds/click/sound5.mp3';
+import sound6 from '../../../resources/sounds/click/sound6.mp3';
 
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 };
 
 const ClickSounds: React.FC<Props> = ({ sounds, setSounds, onChangeProp, changeClickSound }) => {
-	const allSounds = [sound, sound1, sound2, sound3, sound4, sound5];
+	const allSounds = [sound1, sound2, sound3, sound4, sound5, sound6];
 	const result = sounds.map((item: Data, index) => {
 		const { value, active } = item;
 		let classes = 'clickSouds__value';

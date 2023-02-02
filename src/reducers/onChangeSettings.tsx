@@ -38,7 +38,7 @@ const onChangeSettings = (state: any, action: any) => {
 		case 'CHANGE_CLICK_SOUND':
 			return {
 				...state.settings,
-				sound: action.payload,
+				clickSound: action.payload,
 			};
 		default:
 			return state.settings;
