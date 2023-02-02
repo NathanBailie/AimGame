@@ -3,10 +3,12 @@ import Timers from '../Settings/Timers/Timers';
 import TargetSizes from '../Settings/TargetSizes/TargetSizes';
 import TargetColors from '../Settings/TargetColors/TargetColors';
 import BoardColors from '../Settings/BoardColors/BoardColors';
+import SoundSwitcher from '../Settings/SoundSwitcher/SoundSwitcher';
+import ClickSounds from '../Settings/ClickSounds/ClickSounds';
 import { useState, useEffect } from 'react';
 import compose from '../../utils/compose';
 import { connect } from 'react-redux';
-import { onLaucnhMain, onChangeTimer, onChangeTargetSize, onChangeTargetColor, onChangeBoardColor } from '../../actions/actions';
+import { onLaucnhMain, onChangeTimer, onChangeTargetSize, onChangeTargetColor, onChangeBoardColor, onTurnTheSound, onChangeClickSound } from '../../actions/actions';
 import { Settings, Data } from '../../interfaces';
 import { StrNum } from '../../types';
 
@@ -20,9 +22,13 @@ type Props = {
 	targetColor: StrNum[],
 	changeBoardColor: (value: StrNum | StrNum[]) => void,
 	boardColor: string,
+	changeClickSound: (value: StrNum | StrNum[]) => void,
+	clickSound: StrNum,
+	turnTheSound: (value: StrNum | StrNum[]) => void,
+	sound: StrNum,
 };
 
-const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, changeTargetSize, targetSize, changeTargetColor, targetColor, changeBoardColor, boardColor }) => {
+const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, changeTargetSize, targetSize, changeTargetColor, targetColor, changeBoardColor, boardColor, turnTheSound, sound, changeClickSound, clickSound }) => {
 	const settings = {
 		timers: [10, 20, 30, 40, 50, 60],
 		targetSizes: [15, 20, 25, 30, 35, 40],
@@ -35,19 +41,24 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 			['#9e9ae9', 'blue'],
 		],
 		boardColors: ['#749599', '#7e8095', '#596878', '#95927c', '#5b8d5f', '#a39584'],
+		sound: ['on', 'off'],
+		clickSounds: [1, 2, 3, 4, 5, 6],
 	};
-
 
 	const [timers, setTimers] = useState(onCreateSetting(settings['timers']));
 	const [sizes, setSizes] = useState(onCreateSetting(settings['targetSizes']));
 	const [targetColors, setTargetColors] = useState(onCreateSetting(settings['targetColors']));
 	const [boardColors, setBoardColors] = useState(onCreateSetting(settings['boardColors']));
+	const [soundParams, setSoundParams] = useState(onCreateSetting(settings['sound']));
+	const [sounds, setSounds] = useState(onCreateSetting(settings['clickSounds']));
 
 	useEffect(() => {
 		onChangeProp(timers, setTimers, timer);
 		onChangeProp(sizes, setSizes, targetSize);
 		onChangeProp(targetColors, setTargetColors, targetColor);
 		onChangeProp(boardColors, setBoardColors, boardColor);
+		onChangeProp(soundParams, setSoundParams, sound);
+		onChangeProp(sounds, setSounds, clickSound);
 	}, []);
 
 	function onCreateSetting(settingValues: StrNum[] | StrNum[][]): Data[] {
@@ -106,6 +117,18 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 				onChangeProp={onChangeProp}
 				changeBoardColor={changeBoardColor}
 			/>
+			<SoundSwitcher
+				soundParams={soundParams}
+				setSoundParams={setSoundParams}
+				onChangeProp={onChangeProp}
+				turnTheSound={turnTheSound}
+			/>
+			<ClickSounds
+				sounds={sounds}
+				setSounds={setSounds}
+				onChangeProp={onChangeProp}
+				changeClickSound={changeClickSound}
+			/>
 
 			<button
 				className='settings__back'
@@ -116,8 +139,8 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 	);
 };
 
-const mapStateToProps = ({ settings: { timer, targetSize, targetColor, boardColor } }: Settings) => {
-	return { timer, targetSize, targetColor, boardColor };
+const mapStateToProps = ({ settings: { timer, targetSize, targetColor, boardColor, clickSound, sound } }: Settings) => {
+	return { timer, targetSize, targetColor, boardColor, clickSound, sound };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -127,6 +150,8 @@ const mapDispatchToProps = (dispatch: any) => {
 		changeTargetSize: (value: StrNum | StrNum[]) => dispatch(onChangeTargetSize(value)),
 		changeTargetColor: (value: StrNum | StrNum[]) => dispatch(onChangeTargetColor(value)),
 		changeBoardColor: (value: StrNum | StrNum[]) => dispatch(onChangeBoardColor(value)),
+		turnTheSound: (value: StrNum | StrNum[]) => dispatch(onTurnTheSound(value)),
+		changeClickSound: (value: StrNum | StrNum[]) => dispatch(onChangeClickSound(value)),
 	};
 };
 

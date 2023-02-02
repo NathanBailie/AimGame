@@ -35,11 +35,15 @@
 		}
 
 		&:hover {
-			box-shadow: 0px 0px 4px 2px #ffffff;
+			box-shadow: 0px 0px 3px 1px #ffffff;
 		}
 
 		&_active {
-			box-shadow: 0px 0px 4px 2px #ffffff;
+			box-shadow: 0px 0px 3px 1px #1bff00;
+
+			&:hover {
+				box-shadow: 0px 0px 3px 1px #1bff00;
+			}
 		}
 	}
 

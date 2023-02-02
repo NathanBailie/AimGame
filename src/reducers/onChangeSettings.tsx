@@ -5,6 +5,8 @@ const onChangeSettings = (state: any, action: any) => {
 			targetSize: 35,
 			targetColor: ['#9e9ae9', 'blue'],
 			boardColor: '#95927c',
+			sound: 'on',
+			clickSound: 5,
 		};
 	};
 	switch (action.type) {
@@ -27,6 +29,16 @@ const onChangeSettings = (state: any, action: any) => {
 			return {
 				...state.settings,
 				boardColor: action.payload,
+			};
+		case 'TURN_THE_SOUND':
+			return {
+				...state.settings,
+				sound: action.payload,
+			};
+		case 'CHANGE_CLICK_SOUND':
+			return {
+				...state.settings,
+				sound: action.payload,
 			};
 		default:
 			return state.settings;

@@ -44,6 +44,18 @@ const onChangeBoardColor = (value: StrNum | StrNum[]) => {
 		payload: value,
 	};
 };
+const onTurnTheSound = (value: StrNum | StrNum[]) => {
+	return {
+		type: 'TURN_THE_SOUND',
+		payload: value,
+	};
+};
+const onChangeClickSound = (value: StrNum | StrNum[]) => {
+	return {
+		type: 'CHANGE_CLICK_SOUND',
+		payload: value,
+	};
+};
 const onCloseGame = () => {
 	return {
 		type: 'CLOSE_GAME',
@@ -65,6 +77,8 @@ export {
 	onChangeTargetSize,
 	onChangeTargetColor,
 	onChangeBoardColor,
+	onTurnTheSound,
+	onChangeClickSound,
 	onCloseGame,
 	onAddHit,
 };

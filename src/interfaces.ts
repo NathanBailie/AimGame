@@ -14,6 +14,8 @@ export interface Settings {
 		targetSize: number,
 		targetColor: StrNum[],
 		boardColor: string,
+		sound: string,
+		clickSound: StrNum,
 	};
 };
 export interface Results {
