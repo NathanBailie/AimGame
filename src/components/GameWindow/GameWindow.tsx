@@ -7,46 +7,82 @@ import sound5 from '../../resources/sounds/click/sound5.mp3';
 import sound6 from '../../resources/sounds/click/sound6.mp3';
 import missclick from '../../resources/sounds/missclick/missclick.mp3';
 import Timer from '../Timer/Timer';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import uuid from 'react-uuid';
 import compose from '../../utils/compose';
 import { connect } from 'react-redux';
 import { onAddHit, onAddMissclick, onLaucnhSettings, onLaucnhGame, onCloseGame } from '../../actions/actions';
 import { Settings } from '../../interfaces';
-import { StrNum } from '../../types';
 
 
 type Props = {
 	addHit: () => void,
 	addMissclick: () => void,
 	targetSize: number,
-	targetColor: StrNum[],
+	targetColor: string[],
 	boardColor: string,
 	laucnhSettings: () => void,
 	laucnhGame: () => void,
 	closeGame: () => void,
 	clickSound: number,
 	sound: string,
-}
+};
+
+type Ball = {
+	targetClassName: string,
+	id: string,
+	size: string,
+	top: string,
+	left: string,
+	background: string,
+};
 
 const Game: React.FC<Props> = ({ addHit, addMissclick, targetSize, targetColor, boardColor, laucnhSettings, laucnhGame, closeGame, clickSound, sound }) => {
-	const [xPos, setXPos] = useState<number | undefined>();
-	const [yPos, setYPos] = useState<number | undefined>();
 	const boardSize = 500; // width & height
 	const circleSize = targetSize; // width & height
-	const [tarColor1, tarColor2]: any = targetColor;
 	const allSounds = [sound1, sound2, sound3, sound4, sound5, sound6];
 	const [dir, boardColor1, boardColor2]: any = boardColor;
+	const [tarGradient, tarDir, tarColor1, tarColor2] = targetColor;
+	const [targets, setTargets] = useState([onGenerateTarget()]);
 
-
-
-	useEffect(() => {
-		onSetCirclePosition();
-	}, []);
-
-	function onSetCirclePosition(): void {
-		setXPos(getRandomInt(0, boardSize - circleSize - 5));
-		setYPos(getRandomInt(0, boardSize - circleSize - 5));
+	function onGenerateTarget(): Ball {
+		return {
+			targetClassName: 'game__circle',
+			id: uuid(),
+			size: `${circleSize}px`,
+			top: `${getRandomInt(0, boardSize - circleSize - 5)}px`,
+			left: `${getRandomInt(0, boardSize - circleSize - 5)}px`,
+			background: `${tarGradient}(${tarDir && tarDir.length !== 0 && `${tarDir},`} ${tarColor1}, ${tarColor2})`
+		};
 	};
+
+	function onDeleteTarget(id: string): void {
+		const newTargets = targets.filter(item => item.id !== id);
+		setTargets(newTargets);
+	};
+
+	function onCreateTarget(): void {
+		setTargets(i => [...i, onGenerateTarget()]);
+	};
+
+	const result = targets.map(item => {
+		const { targetClassName, id, size, top, left, background } = item;
+		return (
+			<div
+				className={targetClassName}
+				key={id}
+				style={{
+					width: size,
+					height: size,
+					top: top,
+					left: left,
+					background: background,
+				}}
+				onClick={(e) => { onDeleteTarget(id); onCreateTarget() }}
+			></div>
+		);
+	});
+
 
 	function getRandomInt(min: number, max: number): number {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -84,16 +120,7 @@ const Game: React.FC<Props> = ({ addHit, addMissclick, targetSize, targetColor, 
 				}}
 				onClick={(e) => onCheckTarget(e)}
 			>
-				<div
-					className="game__circle"
-					style={{
-						width: `${circleSize}px`,
-						height: `${circleSize}px`,
-						top: `${xPos}px`, left: `${yPos}px`,
-						background: `radial-gradient(${tarColor1}, ${tarColor2})`
-					}}
-					onClick={(e) => onSetCirclePosition()}
-				></div>
+				{result}
 			</div>
 			<button
 				className='game__button game__button_settings'

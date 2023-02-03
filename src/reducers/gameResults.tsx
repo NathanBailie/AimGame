@@ -21,7 +21,7 @@ const gameResults = (state: any, action: any) => {
 			const { hits, missclicks } = state.results;
 			return {
 				...state.results,
-				accuracy: (hits * 100) / (hits + missclicks),
+				accuracy: hits === 0 && missclicks === 0 ? 0 : (hits * 100) / (hits + missclicks),
 			};
 		case 'LAUNCH_GAME':
 			return {

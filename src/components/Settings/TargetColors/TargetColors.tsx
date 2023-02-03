@@ -12,8 +12,7 @@ type Props = {
 const TargetColors: React.FC<Props> = ({ targetColors, setTargetColors, onChangeProp, changeTargetColor }) => {
 	const result = targetColors.map((item: Data, index) => {
 		const { value, active } = item;
-
-		const [color1, color2]: any = value;
+		const [gradient, dir, color1, color2]: any = value;
 		let classes = 'targetColor__ballWraper';
 		if (active) {
 			classes += ' targetColor__ballWraper_active';
@@ -27,7 +26,7 @@ const TargetColors: React.FC<Props> = ({ targetColors, setTargetColors, onChange
 			>
 				<div
 					className={'targetColor__ball'}
-					style={{ background: `radial-gradient(${color1}, ${color2})` }}
+					style={{ background: `${gradient}(${dir && dir.length !== 0 && `${dir},`} ${color1}, ${color2})` }}
 				>
 				</div>
 			</div>

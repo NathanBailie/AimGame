@@ -12,8 +12,8 @@
 		font-size: 50px;
 		margin: 0 auto 25px;
 		font-family: Tahoma;
-		// opacity: 0;
-		// animation: visibility 3s linear 1 1s both;
+		opacity: 0;
+		animation: visibility 1s linear 1 both;
 	}
 
 	&__wraper {
@@ -28,8 +28,8 @@
 		color: LightYellow;
 		font-size: 36px;
 		cursor: pointer;
-		// opacity: 0;
-		// animation: visibility 3s linear 1 4s both;
+		opacity: 0;
+		animation: visibility 1s linear 1 both;
 
 		&:not(:last-child) {
 			margin-bottom: 5px;

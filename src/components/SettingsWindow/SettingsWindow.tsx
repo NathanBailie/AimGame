@@ -33,12 +33,12 @@ const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, chang
 		timers: [10, 20, 30, 40, 50, 60],
 		targetSizes: [15, 20, 25, 30, 35, 40],
 		targetColors: [
-			['#f9f798', '#aba633'],
-			['#80db83', '#4c870d'],
-			['#f1a091', '#d13a20'],
-			['#ffbd45', 'darkorange'],
-			['#ca88db', '#7a0a8f'],
-			['#7b77cb', '#1d1dc1'],
+			['radial-gradient', '', '#f9f798', '#aba633'],
+			['radial-gradient', '', '#ffbd45', 'darkorange'],
+			['radial-gradient', '', '#b1e37a', '#659d29'],
+			['linear-gradient', '', '#c71ae5', '#28bdb6'],
+			['linear-gradient', 'to right', '#f0f329', '#cb502b'],
+			['linear-gradient', '220deg', '#4584d3', '#00ffd0'],
 		],
 		boardColors: [
 			['to top', '#453e56', '#524766'],

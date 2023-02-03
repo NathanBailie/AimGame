@@ -12,7 +12,7 @@ type Props = {
 
 
 const TargetSizes: React.FC<Props> = ({ sizes, setSizes, onChangeProp, changeTargetSize, targetColor }) => {
-	const [color1, color2]: any = targetColor;
+	const [gradient, dir, color1, color2]: any = targetColor;
 	const result = sizes.map((item: Data, index) => {
 		const { value, active } = item;
 		let classes = 'targetSizes__ballWraper';
@@ -28,7 +28,7 @@ const TargetSizes: React.FC<Props> = ({ sizes, setSizes, onChangeProp, changeTar
 			>
 				<div
 					className={'targetSizes__ball'}
-					style={{ height: `${value}px`, width: `${value}px`, background: `radial-gradient(${color1}, ${color2})` }}
+					style={{ height: `${value}px`, width: `${value}px`, background: `${gradient}(${dir && dir.length !== 0 && `${dir},`} ${color1}, ${color2})` }}
 				>
 				</div>
 			</div>
