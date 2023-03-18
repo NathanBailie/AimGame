@@ -4,11 +4,13 @@ import compose from '../../utils/compose';
 import { connect } from 'react-redux';
 import { onLaucnhResults, onCountAccuracy } from '../../actions/actions';
 
+
 type Props = {
 	timer: number,
 	launchResults: () => void,
 	сountAccuracy: () => void,
 };
+
 
 const Timer: React.FC<Props> = ({ timer, launchResults, сountAccuracy }) => {
 	const [minutes, setMinutes] = useState(0);

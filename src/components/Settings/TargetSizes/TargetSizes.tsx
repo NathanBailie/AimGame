@@ -2,6 +2,7 @@ import './targetSizes.scss';
 import { Data } from '../../../interfaces';
 import { StrNum } from '../../../types';
 
+
 type Props = {
 	sizes: Data[],
 	setSizes: (value: Data[]) => void,

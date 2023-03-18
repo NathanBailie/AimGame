@@ -2,12 +2,14 @@ import './targetColors.scss';
 import { Data } from '../../../interfaces';
 import { StrNum } from '../../../types';
 
+
 type Props = {
 	targetColors: Data[],
 	setTargetColors: (value: Data[]) => void,
 	onChangeProp: (settingData: Data[], setData: any, newValue: StrNum | StrNum[]) => void
 	changeTargetColor: (value: StrNum | StrNum[]) => void,
 };
+
 
 const TargetColors: React.FC<Props> = ({ targetColors, setTargetColors, onChangeProp, changeTargetColor }) => {
 	const result = targetColors.map((item: Data, index) => {

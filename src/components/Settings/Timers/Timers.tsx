@@ -2,6 +2,7 @@ import './timers.scss';
 import { Data } from '../../../interfaces';
 import { StrNum } from '../../../types';
 
+
 type Props = {
 	timers: Data[],
 	setTimers: (value: Data[]) => void,

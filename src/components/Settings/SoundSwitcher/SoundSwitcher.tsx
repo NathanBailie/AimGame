@@ -2,12 +2,14 @@ import './soundSwitcher.scss';
 import { Data } from '../../../interfaces';
 import { StrNum } from '../../../types';
 
+
 type Props = {
 	soundParams: Data[],
 	setSoundParams: (value: Data[]) => void,
 	onChangeProp: (settingData: Data[], setData: any, newValue: StrNum | StrNum[]) => void
 	turnTheSound: (value: StrNum | StrNum[]) => void,
 };
+
 
 const SoundSwitcher: React.FC<Props> = ({ soundParams, setSoundParams, onChangeProp, turnTheSound }) => {
 	const result = soundParams.map((item: Data, index) => {

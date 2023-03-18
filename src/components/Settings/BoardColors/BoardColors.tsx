@@ -2,12 +2,14 @@ import './boardColors.scss';
 import { Data } from '../../../interfaces';
 import { StrNum } from '../../../types';
 
+
 type Props = {
 	boardColors: Data[],
 	setBoardColors: (value: Data[]) => void,
 	onChangeProp: (settingData: Data[], setData: any, newValue: StrNum | StrNum[]) => void
 	changeBoardColor: (value: StrNum | StrNum[]) => void,
 };
+
 
 const BoardColors: React.FC<Props> = ({ boardColors, setBoardColors, onChangeProp, changeBoardColor }) => {
 	const result = boardColors.map((item: Data, index) => {

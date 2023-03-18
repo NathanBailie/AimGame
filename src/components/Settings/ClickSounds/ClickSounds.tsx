@@ -16,6 +16,7 @@ type Props = {
 	changeClickSound: (value: StrNum | StrNum[]) => void,
 };
 
+
 const ClickSounds: React.FC<Props> = ({ sounds, setSounds, onChangeProp, changeClickSound }) => {
 	const allSounds = [sound1, sound2, sound3, sound4, sound5, sound6];
 	const result = sounds.map((item: Data, index) => {

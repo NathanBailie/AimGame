@@ -8,9 +8,11 @@ import compose from '../../utils/compose';
 import { connect } from 'react-redux';
 import { Windows } from '../../interfaces';
 
+
 interface Props extends Windows {
 	launchGame: () => void,
 };
+
 
 const App: React.FC<Props> = ({ windows }) => {
 	const { greetings, game, setting, results } = windows;

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Results } from '../../interfaces';
 import { onLaucnhSettings, onLaucnhGame } from '../../actions/actions';
 
+
 type Props = {
 	hits: number,
 	missclicks: number,
@@ -11,6 +12,7 @@ type Props = {
 	laucnhSettings: () => void,
 	laucnhGame: () => void,
 };
+
 
 const ResultsWindow: React.FC<Props> = ({ hits, missclicks, accuracy, laucnhSettings, laucnhGame }) => {
 	return (

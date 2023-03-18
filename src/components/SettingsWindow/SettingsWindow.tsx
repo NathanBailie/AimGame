@@ -12,6 +12,7 @@ import { onLaucnhMain, onChangeTimer, onChangeTargetSize, onChangeTargetColor, o
 import { Settings, Data } from '../../interfaces';
 import { StrNum } from '../../types';
 
+
 type Props = {
 	laucnhMain: () => void,
 	changeTimer: (value: StrNum | StrNum[]) => void,
@@ -27,6 +28,7 @@ type Props = {
 	turnTheSound: (value: StrNum | StrNum[]) => void,
 	sound: StrNum,
 };
+
 
 const SettingsWindow: React.FC<Props> = ({ laucnhMain, changeTimer, timer, changeTargetSize, targetSize, changeTargetColor, targetColor, changeBoardColor, boardColor, turnTheSound, sound, changeClickSound, clickSound }) => {
 	const settings = {

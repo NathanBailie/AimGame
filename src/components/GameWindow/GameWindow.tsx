@@ -28,6 +28,7 @@ type Props = {
 	sound: string,
 };
 
+
 type Ball = {
 	targetClassName: string,
 	id: string,

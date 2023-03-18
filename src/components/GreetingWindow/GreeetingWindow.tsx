@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import { onLaucnhSettings } from '../../actions/actions';
 import { onLaucnhGame } from '../../actions/actions';
 
+
 interface Props {
 	launchSettings: () => void,
 	launchGame: () => void,
 };
+
 
 const GreetingWindow: React.FC<Props> = ({ launchSettings, launchGame }) => {
 	return (
